@@ -1,0 +1,111 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "dimdrawing",
+    "nameCn": "dimensional-drawing",
+    "repoName": "dimensional-drawing-deploy-guide",
+    "oneLiner": "给 Agent 一个组件，它还你一张苹果式尺寸图：内边距、间距、圆角、层级与视口位置全标出来",
+    "officialRepo": "https://github.com/enesozturk/dimensional-drawing",
+    "officialDocs": "https://github.com/enesozturk/dimensional-drawing#install",
+    "stars": "1.6k",
+    "license": "MIT",
+    "highlights": [
+      "两种产出：静态尺寸图与十秒动效片",
+      "规范统一：单色、线宽与剖面线区分层级",
+      "只画架构：文案变了图也不用重画",
+      "可交付：单文件 HTML，直接发给别人",
+      "多客户端：Claude Code、Codex、Cursor 都能装",
+      "MIT 协议，可自行改造"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供安装步骤、目录约定与常见问题。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-31",
+    "verification": [
+      [
+        "README 确认两种技能、三种安装方式与依赖",
+        "已核对 2026-10-31"
+      ],
+      [
+        "README 确认动效模式需 Playwright 与 ffmpeg",
+        "已核对 2026-10-31"
+      ],
+      [
+        "未实测安装与出图",
+        "说明 2026-10-31"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-10-31"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-31"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "requires": [
+        "node"
+      ],
+      "steps": [
+        "git clone https://github.com/enesozturk/dimensional-drawing.git",
+        "mkdir -p ~/.claude/skills",
+        "cp -r dimensional-drawing/skills/* ~/.claude/skills/",
+        "echo \"安装完成：新开一个会话，让它把某个组件画成尺寸图\""
+      ],
+      "stepsPs": [
+        "git clone https://github.com/enesozturk/dimensional-drawing.git",
+        "New-Item -ItemType Directory -Force \"$env:USERPROFILE\\.claude\\skills\" | Out-Null",
+        "Copy-Item -Recurse -Force .\\dimensional-drawing\\skills\\* \"$env:USERPROFILE\\.claude\\skills\\",
+        "Write-Host \"安装完成：新开一个会话，让它把某个组件画成尺寸图\""
+      ],
+      "source": "https://github.com/enesozturk/dimensional-drawing#install"
+    },
+    "pitfalls": [
+      "装了没反应：确认客户端支持 Skills，且文件在正确的技能目录",
+      "Claude Code 找不到：路径是 ~/.claude/skills，不是项目目录",
+      "Windows 复制失败：用 PowerShell 的 Copy-Item，注意目标目录要存在",
+      "画出来缺尺寸：给更明确的源码位置，或让它先读组件文件",
+      "动效渲染失败：确认 Playwright 与 ffmpeg 已装好",
+      "产出太长：指定只画关键视图，或分两张图"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/dimensional-drawing-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/dimensional-drawing-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "dimensional-drawing",
+    "组件 尺寸图",
+    "苹果 尺寸图 风格",
+    "Agent 技能 设计",
+    "UI 标注 自动化",
+    "dimensional drawing 教程",
+    "设计 交付 文档",
+    "Claude 技能 安装",
+    "dimensional drawing deploy guide",
+    "动效 短片 生成"
+  ],
+  "topics": [
+    "design-system",
+    "claude-skills",
+    "ui",
+    "documentation",
+    "motion",
+    "dimensional-drawing"
+  ]
+}
